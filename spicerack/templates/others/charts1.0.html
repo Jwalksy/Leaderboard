@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Leaderboard Tables</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/static/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="/static/dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/static/bower_components/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/static/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/dist/js/sb-admin-2.js"></script>
+
+    <!-- Flot Charts JavaScript -->
+    <script src="/static/bower_components/flot/excanvas.min.js"></script>
+    <script src="/static/bower_components/flot/jquery.flot.js"></script>
+    <script src="/static/bower_components/flot/jquery.flot.pie.js"></script>
+    <script src="/static/bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="/static/bower_components/flot/jquery.flot.time.js"></script>
+    <script src="/static/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+
+    <script type="text/javascript" src="/static/canvasjs/jquery.canvasjs.min.js"></script>
+</head>
+
+
+<body>
+
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <p><a class="navbar-brand" href="/">Leaderboard COMP322</a></p>
+            </div>
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+
+                        <li>
+                            <a href="dashboard.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="charts.html"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Flot</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+
+                    <div class="bargraphs-wrapper" id ="bargraphs">
+                        <script type="text/javascript">
+                        $(document).ready(function () {
+                            var options = {
+                                title: {
+                                    text: "Column Chart using jQuery Plugin"
+                                },
+                                        animationEnabled: true,
+                                data: [
+                                {
+                                    type: "column", //change it to line, area, bar, pie, etc
+                                    dataPoints: [
+                                        { x: 10, y: 10 },
+                                        { x: 20, y: 11 },
+                                        { x: 30, y: 14 },
+                                        { x: 40, y: 16 },
+                                        { x: 50, y: 19 },
+                                        { x: 60, y: 15 },
+                                        { x: 70, y: 12 },
+                                        { x: 80, y: 10 }
+                                    ]
+                                }
+                                ]
+                            };
+                              
+                              for(i = 0; i < 3; i++) {
+                                $('#bargraphs').append('<div id="div'+ i +'" style="height:250px; width:250px; background-color: #FFFFAD; display: inline-block; margin-left:5px;" />');
+                                $('#div'+i).click(function(){
+                                  $(this).CanvasJSChart(options);
+                                });
+                                
+                              }
+                            })
+                            
+                        </script>
+                        
+                    </div>
+                </div>
+
+
+
+
+    <!--             <div class="row">               
+
+                    <div class="col-lg-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Bar graph for test ={{test}} core# ={{core}}
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <div class="flot-chart-content" id="bargraph-wrapper">
+                                        <script type="text/javascript">
+                                            var div = document.createElement("div");
+                                            div.style.width = "100px";
+                                            div.style.height = "100px";
+                                            div.style.background = "red";
+                                            div.style.color = "white";
+                                            div.innerHTML = "Hello";
+
+                                            var bargraph_wrapper=document.getElementById("bargraph-wrapper");
+
+                                            bargraph_wrapper.appendChild(div);
+
+
+                                            $(function() {
+                                                var barOptions = {
+                                                    series: {
+                                                        bars: {
+                                                            show: true,
+                                                            barWidth:1000
+                                                        }
+                                                    },
+                                                    yaxis: {
+                                                        min: 0,
+                                                        max: 10
+                                                    },
+                                                    xaxis: {
+                                                        min: 0,
+                                                        max: 10000,
+                                                    }, 
+                                                    grid: {
+                                                        hoverable: true
+                                                    },
+                                                    legend: {
+                                                        show: true
+                                                    },
+                                                    tooltip: true,
+                                                    tooltipOpts: {
+                                                        content: "x: %x, y: %y"
+                                                    }
+                                                };
+
+                                                // var bars={{bardata[0]}};
+                                                // console.log(bars);
+
+                                                // var bardata='{{bardatajs}}';
+                                                // var mybar=bardata.replace(/&#34;/g,'');
+                                                // console.log(mybar);
+                                                // mybardata=JSON.parse(mybar);
+                                                // console.log(mybar);
+                                                // String.prototype.decodeHTML = function() {
+                                                //     var map = {"gt":">" /* , … */};
+                                                //     return this.replace(/&(#(?:x[0-9a-f]+|\d+)|[a-z]+);?/gi, function($0, $1) {
+                                                //         if ($1[0] === "#") {
+                                                //             return String.fromCharCode($1[1].toLowerCase() === "x" ? parseInt($1.substr(2), 16)  : parseInt($1.substr(1), 10));
+                                                //         } else {
+                                                //             return map.hasOwnProperty($1) ? map[$1] : $0;
+                                                //         }
+                                                //     });
+                                                // };
+                                                // console.log(bardata.String.prototype.decodeHTML());
+                                                var barData = {
+                                                    label: "Performance",
+                                                    data: [
+                                                        // [0,bars[0]],
+                                                        // [1000, bars[1]],
+                                                        // [2000, bars[2]],
+                                                        // [3000, bars[3]],
+                                                        // [4000, bars[4]],
+                                                        // [5000, bars[5]],
+                                                        // [6000, bars[6]],
+                                                        // [7000, bars[7]],
+                                                        // [8000, bars[8]],
+                                                        // [9000, bars[9]]
+                                                        [0,0],
+                                                        [1000, 1],
+                                                        [2000, 2],
+                                                        [3000, 3],
+                                                        [4000, 4],
+                                                        [5000, 5],
+                                                        [6000, 6],
+                                                        [7000, 7],
+                                                        [8000, 8],
+                                                        [9000, 9]
+     
+                                                   ]
+                                                };
+
+                                                // var index=1;
+                                                $.plot($("#bargraph"), [barData], barOptions);
+                                            });
+                                            //     var xlabel = $('<div>Exe_Time_Range</div>'); 
+                                            //     var ylabel = $ ('<div>Num of Students</div>')
+                                            //     // intial positioning
+                                            //     xlabel.css(
+                                            //         {'position': 'absolute', 
+                                            //         'left': $('.flot-x-axis').width()/2, 
+                                            //         'top': $('.flot-x-axis').height() + 5});
+                                            //     console.log($('.flot-y-axis').width(),$('.flot-y-axis').height());
+                                            //     ylabel.css(
+                                            //         {'position': 'absolute', 
+                                            //         'transform': 'rotate(-90deg)',
+                                            //         'left': -80, 
+                                            //         'top': $('.flot-y-axis').height()/2});
+
+                                            //     // append to plot
+                                            //     $('#flot-bar-chart').append(xlabel, ylabel); 
+                                            //     // final position adjustment (label won't have width till appended)
+                                            //     xlabel.css('left', xlabel.position()['left'] - xlabel.width() / 2);
+                                            //     ylabel.css('top', ylabel.position()['top'] - ylabel.height() / 2);
+                                            // });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+
+                          
+                        </div>
+                  
+                    </div>
+
+
+
+
+                    <div class="col-lg-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                               {{student}} 's Performance
+                            </div>
+                            
+                            <div class="panel-body">
+                                <div class="flot-chart">                                                        
+                                    <div class="flot-chart-content" id="flot-line-chart">
+
+                                        <script type="text/javascript">
+                                            $(document).ready(function() {
+                                                console.log("document ready");
+                                                var offset = 0;
+                                                var lines={{plotdatas}};
+                                                
+                                                console.log('HHEL');
+                                                plot(lines);
+
+                                                function plot(data) {
+
+                                                    var options = {
+                                                        series: {
+                                                            lines: {
+                                                                show: true
+                                                            },
+                                                            points: {
+                                                                show: true
+                                                            }
+                                                        },
+                                                        grid: {
+                                                            hoverable: true //IMPORTANT! this is needed for tooltip to work
+                                                        },
+                                                        yaxis: {
+                                                            min: 0,
+                                                            max: 100000
+                                                        },
+                                                        xaxis: {
+                                                            min: 0,
+                                                            max: 10,
+                                                            label:'test'
+                                                        },  
+                                                        // xlabel: { 'cores'
+
+                                                        // },                                                     
+                                                        tooltip: true,
+                                                        tooltipOpts: {
+                                                            content: "'%s' of %x.1 is %y.4",
+                                                            shifts: {
+                                                                x: -60,
+                                                                y: 25
+                                                            }
+                                                        }
+                                                    };
+
+                                                    jsonObj={};
+                                                    for (i=1; i<=data.length;i++){
+                                                        jsonObj['test'+i]=data[i-1]
+                                                    };
+                                                    // alert(jsonObj);
+                                                    series=[];
+
+                                                    $.each(jsonObj, function (key, val) {
+                                                        var serie = {};
+                                                        serie.label = key;
+                                                        serie.data = val;
+                                                        series.push(serie);        
+                                                    }); 
+                                                    var plotObj = $.plot($("#flot-line-chart"), series, options);
+                                                    // create label div
+                                                    var xlabel = $('<div>Num of Cores</div>'); 
+                                                    var ylabel = $ ('<div>Exe_Time</div>')
+                                                    // intial positioning
+                                                    xlabel.css(
+                                                        {'position': 'absolute', 
+                                                        'left': $('.flot-x-axis').width()/2,
+                                                        'top': $('.flot-x-axis').height() + 5});
+                                                    console.log($('.flot-y-axis').width(),$('.flot-y-axis').height());
+                                                    ylabel.css(
+                                                        {'position': 'absolute', 
+                                                        'transform': 'rotate(-90deg)',
+                                                        'left': -60, 
+                                                        'top': $('.flot-y-axis').height()/2});
+
+                                                    // append to plot
+                                                    $('#flot-line-chart').append(xlabel, ylabel); 
+                                                    // final position adjustment (label won't have width till appended)
+                                                    xlabel.css('left', xlabel.position()['left'] - xlabel.width() / 2);
+                                                    ylabel.css('top', ylabel.position()['top'] - ylabel.height() / 2);
+
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/static/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/dist/js/sb-admin-2.js"></script>
+
+    <!-- Flot Charts JavaScript -->
+    <script type="text/javascript" src="/static/canvasjs/jquery.canvasjs.min.js"></script>
+    <script src="/static/bower_components/flot/excanvas.min.js"></script>
+    <script src="/static/bower_components/flot/jquery.flot.js"></script>
+    <script src="/static/bower_components/flot/jquery.flot.pie.js"></script>
+    <script src="/static/bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="/static/bower_components/flot/jquery.flot.time.js"></script>
+    <script src="/static/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+
+
+</body>
+
+</html>

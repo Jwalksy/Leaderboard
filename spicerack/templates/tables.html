@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Leaderboard COMP322-Table</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/static/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="/static/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="/static/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript" src="/static/TableFilter_EN/tablefilter.js"></script>
+
+
+</head>
+
+
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <p><a class="navbar-brand" href="/">Leaderboard COMP322</a></p>
+            </div>
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+
+                        <li>
+                            <a href="dashboard.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="charts.html"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                        </li>
+                        <li>
+                            <a href="line.html"><i class="fa fa-line-chart fa-fw"></i> Line Graphs</a>
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Tables</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class='panel panel-default'>
+  
+                        <div class='panel-heading'>
+                            EXECUTION_TIME Performance
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+
+                                <table class="table table-striped table-bordered table-hover tablesorter" id="exec_time_table">
+                                        <thead>
+                                            <tr>
+                                                <th><strong>TEST NAME<strong></th>
+                                                <th><strong>EXECUTION TIME (milliseconds)<strong></th>
+                                                <th><strong>SUBMISSION #<strong></th>
+                                                <th><strong>CORES<strong></th>
+<!--                                                 <th><strong>Scalability<strong></th>
+ -->                                            <th><strong>Customer #</strong></th>
+                                                <th><strong>SUBMISSION TIME</strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% for user in students %}
+                                                    <tr>
+                                                        <td>{{user.test_name }}</td>
+                                                        <td>{{user.execution_time }}</td>
+                                                        <td>{{user.submission_number}}</td>
+                                                        <td>{{user.core_count}}</td>
+                                                       <!--  <td>scalability</td> -->
+                                                        <td>{{user.customernum}}</td>
+                                                        <td>{{user.last_update}}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tr>
+                                        </tbody>
+
+
+                                </table>
+
+
+
+                            </div>
+
+                        </div>  
+
+
+                        
+<!--                         {% for student in students %}
+                            <div class="panel-body">
+                                <div class="dataTable_wrapper">
+
+                                        <table class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th><strong>TEST NAME<strong></th>
+                                                        <th><strong>EXECUTION TIME<strong></th>
+                                                        <th><strong>CORES<strong></th>
+                                                        <th><strong>SUBMISSION #<strong></th>
+                                                        <th><strong>Customer #</strong></th>
+                                                        <th><strong>SUBMISSION TIME</strong></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        {% for user in student %}
+                                                            <tr>
+                                                                <td>{{user.test_name }}</td>
+                                                                <td>{{user.execution_time }}</td>
+                                                                <td>{{user.submission_number}}</td>
+                                                                <td>{{user.core_count}}</td>
+                                                                <td>{{user.customernum}}</td>
+                                                                <td>{{user.last_update}}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tr>
+                                                </tbody>
+                                        </table>
+                                </div>
+                            </div> 
+                        {% endfor %} -->
+                    </div> <!-- class='panel panel-default' -->
+                </div> <!-- class="col-lg-12" -->
+            </div> <!-- class=row -->
+        </div> <!-- /#page-wrapper -->
+    </div> <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/static/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="/static/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="/static/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/dist/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#exec_time_table').DataTable({
+                responsive: false
+        });
+    });
+    </script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
+    <script language="javascript" type="text/javascript">
+        var dropdownFilters = {
+            btn: false,
+            col_0: "select",
+            col_1: "none",
+            col_2: "select",
+            col_3: "select",
+            col_4: "select",
+            col_5: "select"  
+        }
+        var tf03 = setFilterGrid("exec_time_table",1,dropdownFilters);
+    </script>
+
+
+</body>
+
+
+
+
+</html>
